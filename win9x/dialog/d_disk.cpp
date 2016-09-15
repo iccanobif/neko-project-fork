@@ -126,6 +126,7 @@ void dialog_changehdd(HWND hWnd, REG8 drv)
 		file_cpyname(hddfolder, lpImage, _countof(hddfolder));
 		sysmng_update(SYS_UPDATEOSCFG);
 		diskdrv_setsxsi(drv, lpImage);
+        toolwin_setfdd(2, lpImage); //TODO questo non va assolutamente bene, va fatto un metodo apposta per gli hard disk
 	}
 }
 

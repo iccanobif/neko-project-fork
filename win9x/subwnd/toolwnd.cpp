@@ -59,8 +59,7 @@ typedef struct {
 	UINT8	*counter;
 } DISKACC;
 
-static const UINT8 fddlist[FDDLIST_DRV] = {
-					IDC_TOOLFDD1LIST, IDC_TOOLFDD2LIST};
+static const UINT8 fddlist[FDDLIST_DRV] = {IDC_TOOLFDD1LIST, IDC_TOOLFDD2LIST, IDC_TOOLHDDLIST };
 
 static const DISKACC diskacc[3] = {
 					{IDC_TOOLFDD1ACC,	&toolwin.m_fddaccess[0]},
@@ -347,6 +346,10 @@ static LRESULT CALLBACK twsub(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
 				diskdrv_setfdd(1, fname, 0);
 				toolwin_setfdd(1, fname);
 			}
+            else if (idc == IDC_TOOLHDDLIST) {
+                diskdrv_setsxsi(0, fname);
+                toolwin_setfdd(2, fname);
+            }
 		}
 		DragFinish((HDROP)wp);
 		return(FALSE);
@@ -440,7 +443,10 @@ void CToolWnd::CreateSubItems()
 			remakefddlist(sub, s_toolwndcfg.fdd + i);
 		}
 	}
-	for (UINT i = 0; i < IDC_MAXITEMS; i++)
+    
+    DragAcceptFiles(m_sub[IDC_TOOLHDDLIST], TRUE);
+    
+    for (UINT i = 0; i < IDC_MAXITEMS; i++)
 	{
 		if ((m_sub[i]) && (subitem[i].tctl != TCTL_STATIC))
 		{
@@ -750,6 +756,12 @@ LRESULT CToolWnd::WindowProc(UINT nMsg, WPARAM wParam, LPARAM lParam)
 					toolwin_setfdd(1, NULL);
 					break;
 
+
+                case IDC_BASE + IDC_TOOLHDDEJECT:
+                    diskdrv_setsxsi(0x00, NULL);
+                    toolwin_setfdd(2, NULL);
+                    break;
+
 				case IDC_BASE + IDC_TOOLRESET:
 					if (!winui_en)
 					{
@@ -930,7 +942,7 @@ void CToolWnd::Create()
 		return;
 	}
 
-	m_hbmp = NULL;
+    m_hbmp = NULL;
 	m_fddaccess[0] = 0;
 	m_fddaccess[1] = 0;
 	m_hddaccess = 0;

@@ -20,6 +20,10 @@ static const SUBITEM s_defsubitem[IDC_MAXITEMS] =
 	{TCTL_DDLIST,	NULL,		104, 28, 248, 160, 0, 0},
 	{TCTL_BUTTON,	str_browse,	352, 29,  18,  17, 0, 0},
 	{TCTL_BUTTON,	str_eject,	370, 29,  34,  17, 0, 0},
+	{TCTL_STATIC,	NULL,		 93, 63,   8,   3, 0, 0}, //HDD
+	{TCTL_DDLIST,	NULL,		104, 50, 248, 160, 0, 0}, //HDD
+	{TCTL_BUTTON,	str_browse,	352, 51,  18,  17, 0, 0}, //HDD
+	{TCTL_BUTTON,	str_eject,	370, 51,  34,  17, 0, 0}, //HDD
 	{TCTL_BUTTON,	str_reset,    0,  0,   0,   0, 0, 0},
 	{TCTL_BUTTON,	str_power,	  0,  0,   0,   0, 0, 0}
 };

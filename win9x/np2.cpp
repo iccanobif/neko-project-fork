@@ -561,6 +561,7 @@ static void OnCommand(HWND hWnd, WPARAM wParam)
 
 		case IDM_IDE0EJECT:
 			diskdrv_setsxsi(0x00, NULL);
+            toolwin_setfdd(2, NULL); //TODO questo non va assulotamente bene, va fatto un metodo apposta per gli hard disk
 			break;
 
 		case IDM_IDE1OPEN:
@@ -1542,7 +1543,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst,
 	CVstEditWnd::Initialize(hInstance);
 #endif	// defined(SUPPORT_VSTi)
 
-	GetModuleFileName(NULL, modulefile, NELEMENTS(modulefile));
+    //SetThreadLocale(MAKELCID(MAKELANGID(LANG_JAPANESE, SUBLANG_JAPANESE_JAPAN), SORT_JAPANESE_XJIS));
+
+    GetModuleFileName(NULL, modulefile, NELEMENTS(modulefile));
 	dosio_init();
 	file_setcd(modulefile);
 	Np2Arg::GetInstance()->Parse();
