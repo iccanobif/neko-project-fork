@@ -8,7 +8,16 @@ static const OEMCHAR str_power[] = OEMTEXT("Power");
 static const TCHAR str_static[] = _T("STATIC");
 static const TCHAR str_combobox[] = _T("COMBOBOX");
 static const TCHAR str_button[] = _T("BUTTON");
-
+/*typedef struct {
+	UINT		tctl;
+const OEMCHAR	*text;
+	short		posx;
+	short		posy;
+	short		width;
+	short		height;
+	short		extend;
+	short		padding;
+} SUBITEM;*/
 static const SUBITEM s_defsubitem[IDC_MAXITEMS] =
 {
 	{TCTL_STATIC,	NULL,		 49, 44,   8,   3, 0, 0},
@@ -24,8 +33,8 @@ static const SUBITEM s_defsubitem[IDC_MAXITEMS] =
 	{TCTL_DDLIST,	NULL,		104, 50, 248, 160, 0, 0}, //HDD
 	{TCTL_BUTTON,	str_browse,	352, 51,  18,  17, 0, 0}, //HDD
 	{TCTL_BUTTON,	str_eject,	370, 51,  34,  17, 0, 0}, //HDD
-	{TCTL_BUTTON,	str_reset,    0,  0,   0,   0, 0, 0},
-	{TCTL_BUTTON,	str_power,	  0,  0,   0,   0, 0, 0}
+	{TCTL_BUTTON,	str_reset,   10, 51,  40,  17, 0, 0},
+	{TCTL_BUTTON,	str_power,	 0,  0,   0,    0, 0, 0}
 };
 
 // ----

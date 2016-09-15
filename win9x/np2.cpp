@@ -392,6 +392,7 @@ static int flagload(HWND hWnd, const OEMCHAR *ext, LPCTSTR title, BOOL force)
 		statsave_load(szPath);
 		toolwin_setfdd(0, fdd_diskname(0));
 		toolwin_setfdd(1, fdd_diskname(1));
+        toolwin_setfdd(2, np2cfg.sasihdd[0]); // Carica anche quello dell'hardisk (necessario? boh)
 	}
 	sysmng_workclockreset();
 	sysmng_updatecaption(1);
@@ -1633,6 +1634,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst,
 	scrnmng_initialize();
     
     scrnmng_setmultiple(np2oscfg.SCRN_MUL);
+
+    toolwin_setfdd(2, np2cfg.sasihdd[0]); //TODO questo non va assulotamente bene, va fatto un metodo apposta per gli hard disk
+
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
