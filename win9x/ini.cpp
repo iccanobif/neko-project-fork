@@ -446,6 +446,7 @@ static const PFTBL s_IniItems[] =
 	PFVAL("np2winid", PFRO_BYTE3,		np2oscfg.winid),
 	PFVAL("WindposX", PFTYPE_SINT32,	&np2oscfg.winx),
 	PFVAL("WindposY", PFTYPE_SINT32,	&np2oscfg.winy),
+    PFVAL("SCRN_MUL", PFTYPE_UINT8,     &np2oscfg.SCRN_MUL,     16),
 	PFMAX("paddingx", PFRO_SINT32,		&np2oscfg.paddingx,		32),
 	PFMAX("paddingy", PFRO_SINT32,		&np2oscfg.paddingy,		32),
 	PFVAL("Win_Snap", PFTYPE_BOOL,		&np2oscfg.WINSNAP),

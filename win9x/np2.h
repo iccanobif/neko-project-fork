@@ -28,6 +28,7 @@ typedef struct {
 
 	int		winx;
 	int		winy;
+    UINT8   SCRN_MUL;
 	UINT	paddingx;
 	UINT	paddingy;
 	UINT	fscrn_cx;
