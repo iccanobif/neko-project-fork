@@ -1195,10 +1195,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 				keystat_allrelease();
 				mousemng_enable(MOUSEPROC_BG);
 			}
-			else if (np2oscfg.stopEmuWhenUnfocused) {
-				np2break |= NP2BREAK_MAIN;
-				mousemng_disable(MOUSEPROC_BG);
-			}
+            else
+            {
+                mousemng_disable(MOUSEPROC_BG);
+                if (np2oscfg.stopEmuWhenUnfocused) 
+                    np2break |= NP2BREAK_MAIN;
+            }
+                
 			np2active_renewal();
 			break;
 
