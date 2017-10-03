@@ -398,4 +398,5 @@ void xmenu_update(HMENU hMenu)
 	CheckMenuItem(hMenu, IDM_JOYX, MF_BYCOMMAND | MFCHECK(np2cfg.BTN_MODE));
 	CheckMenuItem(hMenu, IDM_RAPID, MF_BYCOMMAND | MFCHECK(np2cfg.BTN_RAPID));
 	CheckMenuItem(hMenu, IDM_MSRAPID, MF_BYCOMMAND | MFCHECK(np2cfg.MOUSERAPID));
+    CheckMenuItem(hMenu, IDM_STOP_EMU_WHEN_UNFOCUSED, MF_BYCOMMAND | MFCHECK(np2oscfg.stopEmuWhenUnfocused));
 }

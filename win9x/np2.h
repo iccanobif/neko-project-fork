@@ -84,6 +84,8 @@ typedef struct {
 #if defined(SUPPORT_VSTi)
 	TCHAR	szVSTiFile[MAX_PATH];
 #endif	// defined(SUPPORT_VSTi)
+
+    UINT8 stopEmuWhenUnfocused;
 } NP2OSCFG;
 
 

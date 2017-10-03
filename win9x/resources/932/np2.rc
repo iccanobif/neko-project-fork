@@ -773,13 +773,15 @@ IDR_MAIN MENU DISCARDABLE
 BEGIN
     POPUP "&Emulate"
     BEGIN
-        MENUITEM "&Reset",                      IDM_RESET
+        MENUITEM "&Reset",                       IDM_RESET
         MENUITEM SEPARATOR
-        MENUITEM "&Configure...",               IDM_CONFIG
-        MENUITEM "&New disk...",                IDM_NEWDISK
-        MENUITEM "&Font...",                    IDM_CHANGEFONT
+        MENUITEM "&Configure...",                IDM_CONFIG
+        MENUITEM "&New disk...",                 IDM_NEWDISK
+        MENUITEM "&Font...",                     IDM_CHANGEFONT
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       IDM_EXIT
+        MENUITEM "Stop emulation when unfocused" IDM_STOP_EMU_WHEN_UNFOCUSED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                        IDM_EXIT
     END
     POPUP "&Screen"
     BEGIN

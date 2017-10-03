@@ -527,6 +527,7 @@
 #define IDM_TRACE_ENABLE                43103
 #define IDM_TRACE_FILEOUT               43104
 #define IDM_TRACE_CLEAR                 43105
+#define IDM_STOP_EMU_WHEN_UNFOCUSED     43106
 
 // Next default values for new objects
 // 

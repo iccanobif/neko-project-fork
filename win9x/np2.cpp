@@ -1011,6 +1011,11 @@ static void OnCommand(HWND hWnd, WPARAM wParam)
 			update |= SYS_UPDATECFG;
 			break;
 
+        case IDM_STOP_EMU_WHEN_UNFOCUSED:
+            np2oscfg.stopEmuWhenUnfocused ^= 1;
+            update |= SYS_UPDATECFG;
+            break;
+
 		case IDM_CPUSAVE:
 			debugsub_status();
 			break;
@@ -1190,7 +1195,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 				keystat_allrelease();
 				mousemng_enable(MOUSEPROC_BG);
 			}
-			else {
+			else if (np2oscfg.stopEmuWhenUnfocused) {
 				np2break |= NP2BREAK_MAIN;
 				mousemng_disable(MOUSEPROC_BG);
 			}
