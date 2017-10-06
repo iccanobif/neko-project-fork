@@ -1030,8 +1030,16 @@ static void OnCommand(HWND hWnd, WPARAM wParam)
 			winuileave();
 			break;
 
-		default:
 #if defined(SUPPORT_STATSAVE)
+        case IDM_SAVE_STATE:
+            flagsave(_T("sav0"));
+            break;
+
+        case IDM_LOAD_STATE:
+            flagload(hWnd, _T("sav0"), _T("Status Load"), TRUE);
+            break;
+
+		default:
 			if ((uID >= IDM_FLAGSAVE) && (uID < (IDM_FLAGSAVE + SUPPORT_STATSAVE)))
 			{
 				OEMCHAR ext[4];
@@ -1044,8 +1052,9 @@ static void OnCommand(HWND hWnd, WPARAM wParam)
 				OEMSPRINTF(ext, np2flagext, uID - IDM_FLAGLOAD);
 				flagload(hWnd, ext, _T("Status Load"), TRUE);
 			}
-#endif
+
 			break;
+#endif
 	}
 	sysmng_update(update);
 }

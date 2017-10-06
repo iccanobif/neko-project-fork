@@ -881,6 +881,8 @@ BEGIN
         MENUITEM "&Help...",                    IDM_HELP
         MENUITEM "&About...",                   IDM_ABOUT
     END
+    MENUITEM "Save state", IDM_SAVE_STATE
+    MENUITEM "Load state", IDM_LOAD_STATE
 END
 
 IDR_STAT MENU DISCARDABLE 
