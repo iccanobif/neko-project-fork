@@ -1039,6 +1039,14 @@ static void OnCommand(HWND hWnd, WPARAM wParam)
             flagload(hWnd, _T("sav0"), _T("Status Load"), TRUE);
             break;
 
+        case IDM_ENABLE_SOUND:
+            CSoundMng::GetInstance()->Enable(SNDPROC_MAIN);
+            break;
+
+        case IDM_DISABLE_SOUND:
+            CSoundMng::GetInstance()->Disable(SNDPROC_MAIN);
+            break;
+
 		default:
 			if ((uID >= IDM_FLAGSAVE) && (uID < (IDM_FLAGSAVE + SUPPORT_STATSAVE)))
 			{

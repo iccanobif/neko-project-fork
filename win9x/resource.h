@@ -530,6 +530,8 @@
 #define IDM_STOP_EMU_WHEN_UNFOCUSED     43106
 #define IDM_SAVE_STATE                  43107
 #define IDM_LOAD_STATE                  43108
+#define IDM_ENABLE_SOUND                43109
+#define IDM_DISABLE_SOUND               43110
 
 // Next default values for new objects
 // 
