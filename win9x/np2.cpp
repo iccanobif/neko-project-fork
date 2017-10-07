@@ -193,7 +193,8 @@ static void winuienter(void) {
 static void winuileave(void) {
 
 	scrnmng_clearwinui();
-	CSoundMng::GetInstance()->Enable(SNDPROC_MAIN);
+    if (np2oscfg.soundEnabled)
+	    CSoundMng::GetInstance()->Enable(SNDPROC_MAIN);
 	winui_en = FALSE;
 }
 
@@ -319,12 +320,14 @@ void np2active_renewal(void) {										// ver0.30
 			CSoundMng::GetInstance()->Disable(SNDPROC_MASTER);
 		}
 		else {
-			CSoundMng::GetInstance()->Enable(SNDPROC_MASTER);
+            if (np2oscfg.soundEnabled)
+			    CSoundMng::GetInstance()->Enable(SNDPROC_MASTER);
 		}
 	}
 	else {
 		np2stopemulate = 0;
-		CSoundMng::GetInstance()->Enable(SNDPROC_MASTER);
+        if (np2oscfg.soundEnabled)
+		    CSoundMng::GetInstance()->Enable(SNDPROC_MASTER);
 	}
 }
 
@@ -1040,10 +1043,12 @@ static void OnCommand(HWND hWnd, WPARAM wParam)
             break;
 
         case IDM_ENABLE_SOUND:
+            np2oscfg.soundEnabled = 1;
             CSoundMng::GetInstance()->Enable(SNDPROC_MAIN);
             break;
 
         case IDM_DISABLE_SOUND:
+            np2oscfg.soundEnabled = 0;
             CSoundMng::GetInstance()->Disable(SNDPROC_MAIN);
             break;
 
@@ -1309,7 +1314,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 			winlocex_destroy(smwlex);
 			smwlex = NULL;
 			mousemng_enable(MOUSEPROC_WINUI);
-			CSoundMng::GetInstance()->Enable(SNDPROC_MAIN);
+            if (np2oscfg.soundEnabled)
+			    CSoundMng::GetInstance()->Enable(SNDPROC_MAIN);
 			break;
 
 		case WM_KEYDOWN:

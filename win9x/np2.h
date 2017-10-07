@@ -86,6 +86,7 @@ typedef struct {
 #endif	// defined(SUPPORT_VSTi)
 
     UINT8 stopEmuWhenUnfocused;
+    UINT8 soundEnabled;
 } NP2OSCFG;
 
 
