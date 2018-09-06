@@ -1,262 +1,271 @@
+How to build:
 
-// ---- ’è‹`
+- install the files from win9x\vsyasm inside Visual Studio's BuildCustomizations folder. (???)
 
-  Å“K‰»‚Ìˆ×‚Ìƒƒ‚ƒŠŽg—p—Ê‚Ì—}§
-    MEMOPTIMIZE = 0`2
-
-    CPU‚É‚æ‚èˆÈ‰º‚Ì”’l‚ðƒZƒbƒg‚³‚ê‚é‚±‚Æ‚ðŠú‘Ò‚µ‚Ä‚¢‚é
-      MEMOPTIMIZE–¢’è‹` c Celeron333AˆÈ~‚ÌƒZƒJƒ“ƒhƒLƒƒƒbƒVƒ…—LŒø‹@
-      MEMOPTIMIZE = 0   c x86
-      MEMOPTIMIZE = 1   c PowerPC“™‚ÌƒfƒXƒNƒgƒbƒv—pRISC
-      MEMOPTIMIZE = 2   c StrongARM“™‚Ì‘g‚Ýž‚Ý—pRISC
+1) np2.exe/np2nt.exe - emulates a PC-9801 with 286 CPU (16-bit)
+2) np2sx.exe/np2sxnt.exe - same as the above, but emulates a 386SX CPU (32-bit with 16-bit bus)
+3) np21.exe/np21nt.exe - emulates a PC-9821 with an IA-32 CPU (32-bit)
 
 
-  ƒRƒ“ƒpƒCƒ‰‚Ìˆø‚«”E–ß‚è’l‚ÌÅ“K‰»
-    ˆø‚«”E–ß‚è’l‚ÅintŒ^ˆÈŠO‚ðŽw’è‚µ‚½ê‡‚ÉAÅ“K‰»‚ª—LŒø‚É“­‚©‚È‚¢
-    ƒRƒ“ƒpƒCƒ‰Œü‚¯‚Ì’è‹`‚Å‚·B
-    ’Êí‚Í common.h ‚Ì•¨‚ðŽg—p‚µ‚Ü‚·B
-      REG8 c UINT8Œ^ / (sizeof(REG8) != 1)‚Ìê‡ ãˆÊƒrƒbƒg‚ð0fill‚·‚éŽ–
-      REG16 c UINT16Œ^ / (sizeof(REG16) != 2)‚Ìê‡ ãˆÊƒrƒbƒg‚ð0fill‚·‚éŽ–
-@@@‚¢‚¸‚ê‚à’l‚ðƒZƒbƒg‚·‚é‘¤‚ª0fill‚µAŽQÆ‘¤‚Í0fill‚µ‚½‚à‚Ì‚ÆŒ©‚È‚µ‚Ü‚·B
+
+// ---- ï¿½ï¿½`
+
+  ï¿½Å“Kï¿½ï¿½ï¿½Ìˆ×‚Ìƒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½pï¿½Ê‚Ì—}ï¿½ï¿½
+    MEMOPTIMIZE = 0ï¿½`2
+
+    CPUï¿½É‚ï¿½ï¿½È‰ï¿½ï¿½Ìï¿½ï¿½lï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½ï¿½Ò‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+      MEMOPTIMIZEï¿½ï¿½ï¿½ï¿½` ï¿½c Celeron333Aï¿½È~ï¿½ÌƒZï¿½Jï¿½ï¿½ï¿½hï¿½Lï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½@
+      MEMOPTIMIZE = 0   ï¿½c x86
+      MEMOPTIMIZE = 1   ï¿½c PowerPCï¿½ï¿½ï¿½Ìƒfï¿½Xï¿½Nï¿½gï¿½bï¿½vï¿½pRISC
+      MEMOPTIMIZE = 2   ï¿½c StrongARMï¿½ï¿½ï¿½Ì‘gï¿½Ýï¿½ï¿½Ý—pRISC
 
 
-  OS‚ÌŒ¾Œê‚Ì‘I‘ð
-    OSLANG_SJIS c Shift-JIS‚ÌŠ¿ŽšƒR[ƒh‚ð‰ðŽß‚·‚é
-    OSLANG_EUC  c EUC‚ÌŠ¿ŽšƒR[ƒh‚ð‰ðŽß‚·‚é
-
-    OSLINEBREAK_CR   c MacOS   "\r"
-    OSLINEBREAK_LF   c Unix    "\n"
-    OSLINEBREAK_CRLF c Windows "\r\n"
-
-      ¦Œ»Ý‚ÍˆÈ‰º‚Ìƒ\[ƒXƒR[ƒh“à‚ÅŒÂ•Ê‚ÉÝ’è‚µ‚Ä‚¢‚Ü‚·B
-        (Windows‚ª API‚É‚æ‚Á‚Ä \r\n‚Ìê‡‚Æ\n‚Ìê‡‚ª‚ ‚é‚Ì‚Åc)
-        Ecommon/_memory.c
-        Edebugsub.c
-        Estatsave.c
-
-    (milstr.h‘I‘ð—p)
-    SUPPORT_ANK      c ANK•¶Žš—ñ‘€ìŠÖ”‚ðƒŠƒ“ƒN‚·‚é
-    SUPPORT_SJIS     c SJIS•¶Žš—ñ‘€ìŠÖ”‚ðƒŠƒ“ƒN‚·‚é
-    SUPPORT_EUC      c EUC•¶Žš—ñ‘€ìŠÖ”‚ðƒŠƒ“ƒN‚·‚é
-
-      ¦Œ»Ýmilstr.h‚Å‚·‚×‚Ä’è‹`‚³‚ê‚½‚Ü‚Ü‚É‚È‚Á‚Ä‚¢‚Ü‚·B
-        ver0.73‚Åmilstr.h‚Ì’è‹`‚ðŠO‚µ compiler.h‚ÅŽw’è‚µ‚½•¨‚Æ‚È‚è‚Ü‚·B
+  ï¿½Rï¿½ï¿½ï¿½pï¿½Cï¿½ï¿½ï¿½Ìˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ß‚ï¿½lï¿½ÌÅ“Kï¿½ï¿½
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ß‚ï¿½lï¿½ï¿½intï¿½^ï¿½ÈŠOï¿½ï¿½wï¿½è‚µï¿½ï¿½ï¿½ê‡ï¿½ÉAï¿½Å“Kï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½È‚ï¿½
+    ï¿½Rï¿½ï¿½ï¿½pï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì’ï¿½`ï¿½Å‚ï¿½ï¿½B
+    ï¿½Êï¿½ï¿½ common.h ï¿½Ì•ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+      REG8 ï¿½c UINT8ï¿½^ / (sizeof(REG8) != 1)ï¿½Ìê‡ ï¿½ï¿½Êƒrï¿½bï¿½gï¿½ï¿½0fillï¿½ï¿½ï¿½éŽ–
+      REG16 ï¿½c UINT16ï¿½^ / (sizeof(REG16) != 2)ï¿½Ìê‡ ï¿½ï¿½Êƒrï¿½bï¿½gï¿½ï¿½0fillï¿½ï¿½ï¿½éŽ–
+ï¿½@ï¿½@ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½é‘¤ï¿½ï¿½0fillï¿½ï¿½ï¿½Aï¿½Qï¿½Æ‘ï¿½ï¿½ï¿½0fillï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÆŒï¿½ï¿½È‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 
-@CPUCORE_IA32
-@@IA32ƒA[ƒLƒeƒNƒ`ƒƒ‚ðÌ—p
-@@@i386c‚ðŽg—p‚·‚éê‡‚Ì’ˆÓ“_
-@@  ECPU panic ‚âŒx•\Ž¦Žž‚É msgbox() ‚Æ‚¢‚¤ API ‚ðŽg—p‚µ‚Ü‚·B
-@@@@compiler.h ‚ ‚½‚è‚Å“K“–‚É’è‹`‚µ‚Ä‚­‚¾‚³‚¢B
-@@@Esigsetjmp(3), siglongjmp(3) ‚ª–³‚¢ƒA[ƒLƒeƒNƒ`ƒƒ‚ÍˆÈ‰º‚Ì define ‚ð
-@@@@compiler.h ‚ ‚½‚è‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
-@@@@----------------------------------------------------------------------
+  OSï¿½ÌŒï¿½ï¿½ï¿½Ì‘Iï¿½ï¿½
+    OSLANG_SJIS ï¿½c Shift-JISï¿½ÌŠï¿½ï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½ß‚ï¿½ï¿½ï¿½
+    OSLANG_EUC  ï¿½c EUCï¿½ÌŠï¿½ï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½ß‚ï¿½ï¿½ï¿½
+
+    OSLINEBREAK_CR   ï¿½c MacOS   "\r"
+    OSLINEBREAK_LF   ï¿½c Unix    "\n"
+    OSLINEBREAK_CRLF ï¿½c Windows "\r\n"
+
+      ï¿½ï¿½ï¿½ï¿½ï¿½Ý‚ÍˆÈ‰ï¿½ï¿½Ìƒ\ï¿½[ï¿½Xï¿½Rï¿½[ï¿½hï¿½ï¿½ÅŒÂ•Ê‚ÉÝ’è‚µï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+        (Windowsï¿½ï¿½ APIï¿½É‚ï¿½ï¿½ï¿½ï¿½ \r\nï¿½Ìê‡ï¿½ï¿½\nï¿½Ìê‡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Åc)
+        ï¿½Ecommon/_memory.c
+        ï¿½Edebugsub.c
+        ï¿½Estatsave.c
+
+    (milstr.hï¿½Iï¿½ï¿½p)
+    SUPPORT_ANK      ï¿½c ANKï¿½ï¿½ï¿½ï¿½ï¿½ñ‘€ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½
+    SUPPORT_SJIS     ï¿½c SJISï¿½ï¿½ï¿½ï¿½ï¿½ñ‘€ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½
+    SUPPORT_EUC      ï¿½c EUCï¿½ï¿½ï¿½ï¿½ï¿½ñ‘€ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½
+
+      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½milstr.hï¿½Å‚ï¿½ï¿½×‚Ä’ï¿½`ï¿½ï¿½ï¿½ê‚½ï¿½Ü‚Ü‚É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+        ver0.73ï¿½ï¿½milstr.hï¿½Ì’ï¿½`ï¿½ï¿½Oï¿½ï¿½ compiler.hï¿½ÅŽwï¿½è‚µï¿½ï¿½ï¿½ï¿½ï¿½Æ‚È‚ï¿½Ü‚ï¿½ï¿½B
+
+
+ï¿½@CPUCORE_IA32
+ï¿½@ï¿½@IA32ï¿½Aï¿½[ï¿½Lï¿½eï¿½Nï¿½`ï¿½ï¿½ï¿½ï¿½Ì—p
+ï¿½@ï¿½@ï¿½@i386cï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ê‡ï¿½Ì’ï¿½ï¿½Ó“_
+ï¿½@ï¿½@  ï¿½ECPU panic ï¿½ï¿½xï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ msgbox() ï¿½Æ‚ï¿½ï¿½ï¿½ API ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½@ï¿½@ï¿½@ï¿½@compiler.h ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å“Kï¿½ï¿½ï¿½É’ï¿½`ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+ï¿½@ï¿½@ï¿½@ï¿½Esigsetjmp(3), siglongjmp(3) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½[ï¿½Lï¿½eï¿½Nï¿½`ï¿½ï¿½ï¿½ÍˆÈ‰ï¿½ï¿½ï¿½ define ï¿½ï¿½
+ï¿½@ï¿½@ï¿½@ï¿½@compiler.h ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É’Ç‰ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+ï¿½@ï¿½@ï¿½@ï¿½@----------------------------------------------------------------------
         #define sigjmp_buf              jmp_buf
         #define sigsetjmp(env, mask)    setjmp(env)
         #define siglongjmp(env, val)    longjmp(env, val)
-@@@@----------------------------------------------------------------------
+ï¿½@ï¿½@ï¿½@ï¿½@----------------------------------------------------------------------
 
   CPUSTRUC_MEMWAIT
-@@@cpucore\‘¢‘Ì‚Éƒƒ‚ƒŠƒEƒFƒCƒg’l‚ðˆÚ“®‚·‚é(vramop)
+ï¿½@ï¿½@ï¿½@cpucoreï¿½\ï¿½ï¿½ï¿½Ì‚Éƒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½Fï¿½Cï¿½gï¿½lï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½(vramop)
 
-@SUPPORT_CRT15KHZ
-@@@…•½‘–¸15.98kHz‚ðƒTƒ|[ƒg‚·‚é(DIPSW1-1)
+ï¿½@SUPPORT_CRT15KHZ
+ï¿½@ï¿½@ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½15.98kHzï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½(DIPSW1-1)
 
-@SUPPORT_CRT31KHZ
-@@@…•½‘–¸31.47kHz‚ðƒTƒ|[ƒg‚·‚é
-@@@Fellowƒ^ƒCƒv‚Í‚±‚ê
+ï¿½@SUPPORT_CRT31KHZ
+ï¿½@ï¿½@ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½31.47kHzï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½
+ï¿½@ï¿½@ï¿½@Fellowï¿½^ï¿½Cï¿½vï¿½Í‚ï¿½ï¿½ï¿½
 
-@SUPPORT_PC9821
-@@@PC-9821Šg’£‚ÌƒTƒ|[ƒg
-@@@“–‘R‚Å‚·‚ª 386•K{‚Å‚·B
-@@@‚Ü‚½ SUPPORT_CRT31KHZ‚à•K—v‚Å‚·(ƒnƒCƒŒƒ]BIOS‚ðŽg—p‚·‚éˆ×)
+ï¿½@SUPPORT_PC9821
+ï¿½@ï¿½@ï¿½@PC-9821ï¿½gï¿½ï¿½ï¿½ÌƒTï¿½|ï¿½[ï¿½g
+ï¿½@ï¿½@ï¿½@ï¿½ï¿½ï¿½Rï¿½Å‚ï¿½ï¿½ï¿½ 386ï¿½Kï¿½{ï¿½Å‚ï¿½ï¿½B
+ï¿½@ï¿½@ï¿½@ï¿½Ü‚ï¿½ SUPPORT_CRT31KHZï¿½ï¿½Kï¿½vï¿½Å‚ï¿½(ï¿½nï¿½Cï¿½ï¿½ï¿½]BIOSï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½)
 
-@SUPPORT_PC9861K
-@@@PC-9861K(RS-232CŠg’£I/F)‚ðƒTƒ|[ƒg
+ï¿½@SUPPORT_PC9861K
+ï¿½@ï¿½@ï¿½@PC-9861K(RS-232Cï¿½gï¿½ï¿½I/F)ï¿½ï¿½Tï¿½|ï¿½[ï¿½g
 
-@SUPPORT_IDEIO
-@@@IDE‚Ì I/OƒŒƒxƒ‹‚Å‚ÌƒTƒ|[ƒg
-@@@‚Å‚à ATA‚ÌƒŠ[ƒh’ö“x‚µ‚©‚Å‚«‚È‚¢c
+ï¿½@SUPPORT_IDEIO
+ï¿½@ï¿½@ï¿½@IDEï¿½ï¿½ I/Oï¿½ï¿½ï¿½xï¿½ï¿½ï¿½Å‚ÌƒTï¿½|ï¿½[ï¿½g
+ï¿½@ï¿½@ï¿½@ï¿½Å‚ï¿½ ATAï¿½Ìƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½c
 
-@SUPPORT_SASI
-@@@SASI HDD‚ðƒTƒ|[ƒg
-@@@’è‹`‚ª‚È‚¯‚ê‚ÎíŽžIDE‚Æ‚µ‚Äì“®‚µ‚Ü‚·B
+ï¿½@SUPPORT_SASI
+ï¿½@ï¿½@ï¿½@SASI HDDï¿½ï¿½Tï¿½|ï¿½[ï¿½g
+ï¿½@ï¿½@ï¿½@ï¿½ï¿½`ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ÎíŽžIDEï¿½Æ‚ï¿½ï¿½Äì“®ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-@SUPPORT_SCSI
-@@@SCSI HDD‚ðƒTƒ|[ƒgc‘S‘R“®‚©‚È‚¢
+ï¿½@SUPPORT_SCSI
+ï¿½@ï¿½@ï¿½@SCSI HDDï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½cï¿½Sï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
 
-@SUPPORT_S98
-@@@S98ƒƒO‚ðŽæ“¾
+ï¿½@SUPPORT_S98
+ï¿½@ï¿½@ï¿½@S98ï¿½ï¿½ï¿½Oï¿½ï¿½æ“¾
 
-@SUPPORT_WAVEREC
-@@SoundƒŒƒxƒ‹‚Å waveƒtƒ@ƒCƒ‹‚Ì‘‚«o‚µŠÖ”‚ðƒTƒ|[ƒg
-@@’A‚µ‘‚«o‚µ’†‚Í ƒTƒEƒ“ƒho—Í‚ªŽ~‚Ü‚é‚Ì‚Å@‚Ù‚ÚƒfƒoƒO—p
+ï¿½@SUPPORT_WAVEREC
+ï¿½@ï¿½@Soundï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ waveï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Öï¿½ï¿½ï¿½Tï¿½|ï¿½[ï¿½g
+ï¿½@ï¿½@ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½oï¿½Í‚ï¿½ï¿½~ï¿½Ü‚ï¿½Ì‚Å@ï¿½Ù‚Úƒfï¿½oï¿½Oï¿½p
 
 
 // ---- screen
 
-  PC-9801ƒVƒŠ[ƒY‚Ì‰æ–ÊƒTƒCƒY‚Í•W€‚Å 641x400B
-  VGA‚Å‚ÍŽû‚Ü‚ç‚È‚¢‚Ì‚Å ‹­§“I‚ÉVGA‚ÉŽû‚ß‚éˆ×‚É ‰æ–Ê‰¡ƒTƒCƒY‚Í width + extend
-‚Æ‚·‚éB
+  PC-9801ï¿½Vï¿½ï¿½ï¿½[ï¿½Yï¿½Ì‰ï¿½ÊƒTï¿½Cï¿½Yï¿½Í•Wï¿½ï¿½ï¿½ï¿½ 641x400ï¿½B
+  VGAï¿½Å‚ÍŽï¿½ï¿½Ü‚ï¿½È‚ï¿½ï¿½Ì‚ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½VGAï¿½ÉŽï¿½ï¿½ß‚ï¿½×‚ï¿½ ï¿½ï¿½Ê‰ï¿½ï¿½Tï¿½Cï¿½Yï¿½ï¿½ width + extend
+ï¿½Æ‚ï¿½ï¿½ï¿½B
   8 < width < 640
   8 < height < 480
   extend = 0 or 1
 
 typedef struct {
-	BYTE	*ptr;		// VRAMƒ|ƒCƒ“ƒ^
-	int		xalign;		// x•ûŒüƒIƒtƒZƒbƒg
-	int		yalign;		// y•ûŒüƒIƒtƒZƒbƒg
-	int		width;		// ‰¡•
-	int		height;		// c•
-	UINT	bpp;		// ƒXƒNƒŠ[ƒ“Fƒrƒbƒg
-	int		extend;		// •Šg’£
+	BYTE	*ptr;		// VRAMï¿½|ï¿½Cï¿½ï¿½ï¿½^
+	int		xalign;		// xï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½tï¿½Zï¿½bï¿½g
+	int		yalign;		// yï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½tï¿½Zï¿½bï¿½g
+	int		width;		// ï¿½ï¿½ï¿½ï¿½
+	int		height;		// ï¿½cï¿½ï¿½
+	UINT	bpp;		// ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Fï¿½rï¿½bï¿½g
+	int		extend;		// ï¿½ï¿½ï¿½gï¿½ï¿½
 } SCRNSURF;
 
-  ƒT[ƒtƒFƒXƒTƒCƒY‚Í (width + extern) x heightB
+  ï¿½Tï¿½[ï¿½tï¿½Fï¿½Xï¿½Tï¿½Cï¿½Yï¿½ï¿½ (width + extern) x heightï¿½B
 
 
 const SCRNSURF *scrnmng_surflock(void);
-  ‰æ–Ê•`‰æŠJŽn
+  ï¿½ï¿½Ê•`ï¿½ï¿½Jï¿½n
 
 void scrnmng_surfunlock(const SCRNSURF *surf);
-  ‰æ–Ê•`‰æI—¹(‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Å•`‰æ)
+  ï¿½ï¿½Ê•`ï¿½ï¿½Iï¿½ï¿½(ï¿½ï¿½ï¿½Ìƒ^ï¿½Cï¿½~ï¿½ï¿½ï¿½Oï¿½Å•`ï¿½ï¿½)
 
 
 void scrnmng_setwidth(int posx, int width)
 void scrnmng_setextend(int extend)
 void scrnmng_setheight(int posy, int height)
-  •`‰æƒTƒCƒY‚Ì•ÏX
-  ƒEƒBƒ“ƒhƒEƒTƒCƒY‚Ì•ÏX‚·‚é
-  ƒtƒ‹ƒXƒNƒŠ[ƒ“’†‚Å‚ ‚ê‚Î •\Ž¦—Ìˆæ‚ð•ÏXB
-  SCRNSURF‚Å‚Í‚±‚Ì’l‚ð•Ô‚·‚æ‚¤‚É‚·‚é
-  posx, width‚Í 8‚Ì”{”
+  ï¿½`ï¿½ï¿½Tï¿½Cï¿½Yï¿½Ì•ÏX
+  ï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½Tï¿½Cï¿½Yï¿½Ì•ÏXï¿½ï¿½ï¿½ï¿½
+  ï¿½tï¿½ï¿½ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ ï¿½\ï¿½ï¿½ï¿½Ìˆï¿½ï¿½ÏXï¿½B
+  SCRNSURFï¿½Å‚Í‚ï¿½ï¿½Ì’lï¿½ï¿½Ô‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+  posx, widthï¿½ï¿½ 8ï¿½Ì”{ï¿½ï¿½
 
-BOOL scrnmng_isfullscreen(void) c NP2ƒRƒA‚Å‚Í–¢Žg—p
-  ƒtƒ‹ƒXƒNƒŠ[ƒ“ó‘Ô‚ÌŽæ“¾
-    return: ”ñ0‚Åƒtƒ‹ƒXƒNƒŠ[ƒ“
+BOOL scrnmng_isfullscreen(void) ï¿½c NP2ï¿½Rï¿½Aï¿½Å‚Í–ï¿½ï¿½gï¿½p
+  ï¿½tï¿½ï¿½ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½Ô‚ÌŽæ“¾
+    return: ï¿½ï¿½0ï¿½Åƒtï¿½ï¿½ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½
 
 BOOL scrnmng_haveextend(void)
-  ‰¡•ó‘Ô‚ÌŽæ“¾
-    return: ”ñ0‚Å ‰¡•Šg’£ƒTƒ|[ƒg
+  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ÌŽæ“¾
+    return: ï¿½ï¿½0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Tï¿½|ï¿½[ï¿½g
 
 UINT scrnmng_getbpp(void)
-  ƒXƒNƒŠ[ƒ“Fƒrƒbƒg”‚ÌŽæ“¾
-    return: ƒrƒbƒg”(8/16/24/32)
+  ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Fï¿½rï¿½bï¿½gï¿½ï¿½ï¿½ÌŽæ“¾
+    return: ï¿½rï¿½bï¿½gï¿½ï¿½(8/16/24/32)
 
 void scrnmng_palchanged(void)
-  ƒpƒŒƒbƒgXV‚Ì’Ê’m(8bitƒXƒNƒŠ[ƒ“ƒTƒ|[ƒgŽž‚Ì‚Ý)
+  ï¿½pï¿½ï¿½ï¿½bï¿½gï¿½Xï¿½Vï¿½Ì’Ê’m(8bitï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½Ì‚ï¿½)
 
 RGB16 scrnmng_makepal16(RGB32 pal32)
-  RGB32‚©‚ç 16bitF‚ðì¬‚·‚éB(16bitƒXƒNƒŠ[ƒ“ƒTƒ|[ƒgŽž‚Ì‚Ý)
+  RGB32ï¿½ï¿½ï¿½ï¿½ 16bitï¿½Fï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½B(16bitï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½Ì‚ï¿½)
 
 
 
 // ---- sound
 
-NP2‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚Í sound.c‚ÌˆÈ‰º‚ÌŠÖ”‚æ‚èŽæ“¾
+NP2ï¿½ÌƒTï¿½Eï¿½ï¿½ï¿½hï¿½fï¿½[ï¿½^ï¿½ï¿½ sound.cï¿½ÌˆÈ‰ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½æ“¾
   const SINT32 *sound_pcmlock(void)
   void sound_pcmunlock(const SINT32 *hdl)
 
 
-SOUND_CRITICAL  ƒZƒ}ƒtƒH‚ð“ü‚ê‚é(see sndcsec.c)
-SOUNDRESERVE    —\–ñƒoƒbƒtƒ@‚ÌƒTƒCƒY(ƒ~ƒŠ•b)
-  ƒTƒEƒ“ƒh‚ðŠ„‚èž‚Ýˆ—‚·‚éê‡‚ÌŽw’èB
-  Š„‚èž‚Ý‚ÌÅ‘å‰„‘ØŽžŠÔ‚ðSOUNDRESERVE‚ÅŽw’èB
-  (Win9x‚Ìê‡AŽ©‘O‚ÅƒŠƒ“ƒOƒoƒbƒtƒ@‚ðŒ©’£‚é‚Ì‚Å Š„‚èž‚Ý–³‚µEŽw’èŽžŠÔ’Ê‚è‚É
-  ƒTƒEƒ“ƒhƒ‰ƒCƒg‚ª—ˆ‚é‚Ì‚ÅA‚±‚Ìˆ—‚Í•s—v‚¾‚Á‚½)
+SOUND_CRITICAL  ï¿½Zï¿½}ï¿½tï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(see sndcsec.c)
+SOUNDRESERVE    ï¿½\ï¿½ï¿½oï¿½bï¿½tï¿½@ï¿½ÌƒTï¿½Cï¿½Y(ï¿½~ï¿½ï¿½ï¿½b)
+  ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½èžï¿½Ýï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÌŽwï¿½ï¿½B
+  ï¿½ï¿½ï¿½èžï¿½Ý‚ÌÅ‘å‰„ï¿½ØŽï¿½ï¿½Ô‚ï¿½SOUNDRESERVEï¿½ÅŽwï¿½ï¿½B
+  (Win9xï¿½Ìê‡ï¿½Aï¿½ï¿½ï¿½Oï¿½Åƒï¿½ï¿½ï¿½ï¿½Oï¿½oï¿½bï¿½tï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ ï¿½ï¿½ï¿½èžï¿½Ý–ï¿½ï¿½ï¿½ï¿½Eï¿½wï¿½èŽžï¿½Ô’Ê‚ï¿½ï¿½
+  ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Cï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÅAï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½Í•sï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 
 
 UINT soundmng_create(UINT rate, UINT ms)
-  ƒTƒEƒ“ƒhƒXƒgƒŠ[ƒ€‚ÌŠm•Û
-    input:  rate    ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg(11025/22050/44100)
-            ms      ƒTƒ“ƒvƒŠƒ“ƒOƒoƒbƒtƒ@ƒTƒCƒY(ƒ~ƒŠ•b)
-    return: Šl“¾‚µ‚½ƒoƒbƒtƒ@‚ÌƒTƒ“ƒvƒŠƒ“ƒO”
+  ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ÌŠmï¿½ï¿½
+    input:  rate    ï¿½Tï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½[ï¿½g(11025/22050/44100)
+            ms      ï¿½Tï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½oï¿½bï¿½tï¿½@ï¿½Tï¿½Cï¿½Y(ï¿½~ï¿½ï¿½ï¿½b)
+    return: ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½bï¿½tï¿½@ï¿½ÌƒTï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½
 
-            ms‚É]‚¤•K—v‚Í‚È‚¢(SDL‚Æ‚©ƒoƒbƒtƒ@ƒTƒCƒY‚ªŒÀ’è‚³‚ê‚é‚Ì‚Å)
-            NP2‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‘€ì‚Í •Ô‚è’l‚Ì‚Ý‚ð—˜—p‚µ‚Ä‚¢‚Ü‚·B
+            msï¿½É]ï¿½ï¿½ï¿½Kï¿½vï¿½Í‚È‚ï¿½(SDLï¿½Æ‚ï¿½ï¿½oï¿½bï¿½tï¿½@ï¿½Tï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½è‚³ï¿½ï¿½ï¿½Ì‚ï¿½)
+            NP2ï¿½ÌƒTï¿½Eï¿½ï¿½ï¿½hï¿½oï¿½bï¿½tï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô‚ï¿½lï¿½Ì‚Ý‚ð—˜—pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 
 void soundmng_destroy(void)
-  ƒTƒEƒ“ƒhƒXƒgƒŠ[ƒ€‚ÌI—¹
+  ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ÌIï¿½ï¿½
 
 void soundmng_reset(void)
-  ƒTƒEƒ“ƒhƒXƒgƒŠ[ƒ€‚ÌƒŠƒZƒbƒg
+  ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ìƒï¿½ï¿½Zï¿½bï¿½g
 
 void soundmng_play(void)
-  ƒTƒEƒ“ƒhƒXƒgƒŠ[ƒ€‚ÌÄ¶
+  ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ÌÄï¿½
 
 void soundmng_stop(void)
-  ƒTƒEƒ“ƒhƒXƒgƒŠ[ƒ€‚Ì’âŽ~
+  ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ì’ï¿½~
 
 void soundmng_sync(void)
-  ƒTƒEƒ“ƒhƒXƒgƒŠ[ƒ€‚ÌƒR[ƒ‹ƒoƒbƒN
+  ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ÌƒRï¿½[ï¿½ï¿½ï¿½oï¿½bï¿½N
 
 void soundmng_setreverse(BOOL reverse)
-  ƒTƒEƒ“ƒhƒXƒgƒŠ[ƒ€‚Ìo—Í”½“]Ý’è
-    input:  reverse ”ñ0‚Å¶‰E”½“]
+  ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ìoï¿½Í”ï¿½ï¿½]ï¿½Ý’ï¿½
+    input:  reverse ï¿½ï¿½0ï¿½Åï¿½ï¿½Eï¿½ï¿½ï¿½]
 
 BOOL soundmng_pcmplay(UINT num, BOOL loop)
-  PCMÄ¶
-    input:  num     PCM”Ô†
-            loop    ”ñ0‚Åƒ‹[ƒv
+  PCMï¿½Äï¿½
+    input:  num     PCMï¿½Ôï¿½
+            loop    ï¿½ï¿½0ï¿½Åƒï¿½ï¿½[ï¿½v
 
 void soundmng_pcmstop(UINT num)
-  PCM’âŽ~
-    input:  num     PCM”Ô†
+  PCMï¿½ï¿½~
+    input:  num     PCMï¿½Ôï¿½
 
 
 
 // ---- mouse
 
 BYTE mousemng_getstat(SINT16 *x, SINT16 *y, int clear)
-  ƒ}ƒEƒX‚Ìó‘ÔŽæ“¾
-    input:  clear   ”ñ0‚Å ó‘Ô‚ðŽæ“¾Œã‚ÉƒJƒEƒ“ƒ^‚ðƒŠƒZƒbƒg‚·‚é
-    output: *x      clear‚©‚ç‚Ìx•ûŒüƒJƒEƒ“ƒg
-            *y      clear‚©‚ç‚Ìy•ûŒüƒJƒEƒ“ƒg
-    return: bit7    ¶ƒ{ƒ^ƒ“‚Ìó‘Ô (0:‰Ÿ‰º)
-            bit5    ‰Eƒ{ƒ^ƒ“‚Ìó‘Ô (0:‰Ÿ‰º)
+  ï¿½}ï¿½Eï¿½Xï¿½Ìï¿½ÔŽæ“¾
+    input:  clear   ï¿½ï¿½0ï¿½ï¿½ ï¿½ï¿½Ô‚ï¿½æ“¾ï¿½ï¿½ÉƒJï¿½Eï¿½ï¿½ï¿½^ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½ï¿½
+    output: *x      clearï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½g
+            *y      clearï¿½ï¿½ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½g
+    return: bit7    ï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½Ìï¿½ï¿½ (0:ï¿½ï¿½ï¿½ï¿½)
+            bit5    ï¿½Eï¿½{ï¿½^ï¿½ï¿½ï¿½Ìï¿½ï¿½ (0:ï¿½ï¿½ï¿½ï¿½)
 
 
 
 // ---- serial/parallel/midi
 
 COMMNG commng_create(UINT device)
-  ƒVƒŠƒAƒ‹ƒI[ƒvƒ“
-    input:  ƒfƒoƒCƒX”Ô†
-    return: ƒnƒ“ƒhƒ‹ (Ž¸”sŽžNULL)
+  ï¿½Vï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Iï¿½[ï¿½vï¿½ï¿½
+    input:  ï¿½fï¿½oï¿½Cï¿½Xï¿½Ôï¿½
+    return: ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ (ï¿½ï¿½ï¿½sï¿½ï¿½NULL)
 
 
 void commng_destroy(COMMNG hdl)
-  ƒVƒŠƒAƒ‹ƒNƒ[ƒY
-    input:  ƒnƒ“ƒhƒ‹ (Ž¸”sŽžNULL)
+  ï¿½Vï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½[ï¿½Y
+    input:  ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ (ï¿½ï¿½ï¿½sï¿½ï¿½NULL)
 
 
 
 // ---- joy stick
 
 BYTE joymng_getstat(void)
-  ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚Ìó‘ÔŽæ“¾
+  ï¿½Wï¿½ï¿½ï¿½Cï¿½Xï¿½eï¿½Bï¿½bï¿½Nï¿½Ìï¿½ÔŽæ“¾
 
-    return: bit0    ãƒ{ƒ^ƒ“‚Ìó‘Ô (0:‰Ÿ‰º)
-            bit1    ‰ºƒ{ƒ^ƒ“‚Ìó‘Ô
-            bit2    ¶ƒ{ƒ^ƒ“‚Ìó‘Ô
-            bit3    ‰Eƒ{ƒ^ƒ“‚Ìó‘Ô
-            bit4    ˜AŽËƒ{ƒ^ƒ“‚P‚Ìó‘Ô
-            bit5    ˜AŽËƒ{ƒ^ƒ“‚Q‚Ìó‘Ô
-            bit6    ƒ{ƒ^ƒ“‚P‚Ìó‘Ô
-            bit7    ƒ{ƒ^ƒ“‚Q‚Ìó‘Ô
+    return: bit0    ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½Ìï¿½ï¿½ (0:ï¿½ï¿½ï¿½ï¿½)
+            bit1    ï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½Ìï¿½ï¿½
+            bit2    ï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½Ìï¿½ï¿½
+            bit3    ï¿½Eï¿½{ï¿½^ï¿½ï¿½ï¿½Ìï¿½ï¿½
+            bit4    ï¿½Aï¿½Ëƒ{ï¿½^ï¿½ï¿½ï¿½Pï¿½Ìï¿½ï¿½
+            bit5    ï¿½Aï¿½Ëƒ{ï¿½^ï¿½ï¿½ï¿½Qï¿½Ìï¿½ï¿½
+            bit6    ï¿½{ï¿½^ï¿½ï¿½ï¿½Pï¿½Ìï¿½ï¿½
+            bit7    ï¿½{ï¿½^ï¿½ï¿½ï¿½Qï¿½Ìï¿½ï¿½
 
 
 // ----
 
 void sysmng_update(UINT bitmap)
-  ó‘Ô‚ª•Ï‰»‚µ‚½ê‡‚ÉƒR[ƒ‹‚³‚ê‚éB
+  ï¿½ï¿½Ô‚ï¿½ï¿½Ï‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÉƒRï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
 void sysmng_cpureset(void)
-  ƒŠƒZƒbƒgŽž‚ÉƒR[ƒ‹‚³‚ê‚é
+  ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½ÉƒRï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
 void taskmng_exit(void)
-  ƒVƒXƒeƒ€‚ðI—¹‚·‚éB
+  ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
