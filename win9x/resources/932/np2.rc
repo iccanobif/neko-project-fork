@@ -7,7 +7,15 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
+
+// iccanobif: I couldn't for the life of me get vs2019 find this afxres.h, and on the
+// internet someone said to just replace it with windows.h. That header still missed the definition
+// for IDC_STATIC, but after adding that everything seems to work anyway...
+//#include "afxres.h"
+#include "windows.h"
+#ifndef IDC_STATIC
+#define IDC_STATIC				-1
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
